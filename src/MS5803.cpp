@@ -17,7 +17,7 @@ Distributed as-is; no warranty is given.
 ******************************************************************************/
 
 #include <Wire.h> // Wire library is used for I2C
-#include "MS5803_I2C.h"
+#include "MS5803.h"
 
 MS5803::MS5803(ms5803_addr address, int MaxPressure)
 // Base library type I2C

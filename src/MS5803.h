@@ -16,8 +16,8 @@ Space still contains infinite unknowns."
 Distributed as-is; no warranty is given.
 ******************************************************************************/
 
-#ifndef MS5803_I2C_h
-#define MS5803_I2C_h
+#ifndef MS5803_h
+#define MS5803_h
 
 #include <Arduino.h>
 
