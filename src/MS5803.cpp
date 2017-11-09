@@ -76,7 +76,7 @@ uint8_t MS5803::begin(void)
 
 	case 3:
 		{
-		int ConvTemp3[] = {18, 5, 17, 7, 9090, 3, 33, 3, 3, 7, 3, 0, 3, 0, 0, 0};
+		int ConvTemp3[] = {18, 5, 17, 7, 10000, 3, 33, 3, 3, 7, 3, 0, 3, 0, 0, 0};
 		memcpy(ConvCoef, ConvTemp3, 16);
 		}
 		break;
@@ -113,14 +113,14 @@ float MS5803::getTemperature(temperature_units units, precision _precision)
 	float temperature_reported;
 	// If Fahrenheit is selected return the temperature converted to F
 	if(units == FAHRENHEIT){
-		temperature_reported = _temperature_actual / 100;
+		temperature_reported = _temperature_actual / 100.0f;
 		temperature_reported = (((temperature_reported) * 9) / 5) + 32;
 		return temperature_reported;
 		}
 		
 	// If Celsius is selected return the temperature converted to C	
 	else {
-		temperature_reported = _temperature_actual / 100;
+		temperature_reported = _temperature_actual / 100.0f;
 		return temperature_reported;
 	}
 }
