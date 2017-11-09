@@ -11,7 +11,7 @@ came before us
 ******************************************************************************/
 
 #include <Wire.h>
-#include <MS5803_I2C.h>
+#include <MS5803.h>
 
 // Begin class with selected address
 // available addresses (selected by jumper on board) 
