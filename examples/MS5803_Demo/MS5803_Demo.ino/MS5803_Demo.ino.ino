@@ -20,7 +20,7 @@ came before us
 //  ADDRESS_HIGH = 0x76
 //  ADDRESS_LOW  = 0x77
 
-MS5803 sensor(ADDRESS_HIGH, 14); //This demo was setup to be used with the 14BA model, to change this, set the maximum pressure in this line to the correct value
+MS5803 sensor(ADDRESS_LOW, 5); //This demo was setup to be used with the 14BA model, to change this, set the maximum pressure in this line to the correct value
 
 //Create variables to store results
 float temperature_c, temperature_f;
