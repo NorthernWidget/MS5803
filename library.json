@@ -1,6 +1,6 @@
 {
     "name": "MS5803",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description":  "General interface to MS5803-series pressure transducers.",
     "keywords": "sensor, sensors, MS5803, EnviroDIY",
     "platforms": "atmelavr, atmelsam",
