@@ -62,17 +62,17 @@ enum precision
 
 class MS5803
 {
-    public:
-    MS5803(){};
+public:
+    MS5803(uint8_t address = 0x76, int MaxPressure = 5);  // Constructor
     void reset(void);     //Reset device
-    uint8_t begin(uint8_t ms5803_addr, int MaxPressure); // Collect coefficients from sensor
+    uint8_t begin(uint8_t address = 0x76, int MaxPressure = 5); // Collect coefficients from sensor
 
     // Return calculated temperature from sensor
     float getTemperature(temperature_units units, precision _precision);
     // Return calculated pressure from sensor
     float getPressure(precision _precision);
 
-    private:
+private:
     int Model;
     int32_t _temperature_actual;
     int32_t _pressure_actual;

@@ -19,6 +19,24 @@ Distributed as-is; no warranty is given.
 #include <Wire.h> // Wire library is used for I2C
 #include "MS5803.h"
 
+MS5803::MS5803(uint8_t address, int MaxPressure)
+// Base library type I2C
+{
+    _address = address; //set interface used for communication
+
+    switch(MaxPressure)
+    {
+        // Set model number based on maximum pressure range
+        case (1): {Model = 1; break;}    //BA01
+        case (2): {Model = 2; break;}    //BA02
+        case (5): {Model = 3; break;}    //BA05
+        case (7): {Model = 4; break;}    //BA07
+        case (14): {Model = 5; break;}   //BA14
+        case (30): {Model = 6; break;}   //BA30
+        default: {Model = 3; break;}    //BA05
+    }
+}
+
 void MS5803::reset(void)
 // Reset device I2C
 {
@@ -27,19 +45,25 @@ void MS5803::reset(void)
 }
 
 
-uint8_t MS5803::begin(uint8_t ms5803_addr, int MaxPressure)
+uint8_t MS5803::begin(uint8_t address, int MaxPressure)
 // Initialize library for subsequent pressure measurements
 {
-    Wire.begin();  // Arduino Wire library initializer
+    // Reset address and pressure if given in begin
+    _address = address; //set interface used for communication
 
-    _address = ms5803_addr; //set interface used for communication
-    //Set model number based on maximum pressure range
-    if(MaxPressure == 1)    Model = 1;    //BA01
-    if(MaxPressure == 2)    Model = 2;    //BA02
-    if(MaxPressure == 5)    Model = 3;    //BA05
-    if(MaxPressure == 7)    Model = 4;    //BA07
-    if(MaxPressure == 14)   Model = 5;    //BA14
-    if(MaxPressure == 30)   Model = 6;    //BA30
+    switch(MaxPressure)
+    {
+        // Set model number based on maximum pressure range
+        case (1): {Model = 1; break;}    //BA01
+        case (2): {Model = 2; break;}    //BA02
+        case (5): {Model = 3; break;}    //BA05
+        case (7): {Model = 4; break;}    //BA07
+        case (14): {Model = 5; break;}   //BA14
+        case (30): {Model = 6; break;}   //BA30
+        default: {Model = 3; break;}    //BA05
+    }
+
+    Wire.begin();  // Arduino Wire library initializer
 
     uint8_t i;
     uint8_t highByte = 0;
