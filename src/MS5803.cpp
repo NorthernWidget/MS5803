@@ -133,7 +133,7 @@ uint8_t MS5803::begin(uint8_t address, int MaxPressure)
         default: {Model = 3; break;}    //BA05
     }
 
-    begin();
+    return begin();
 }
 
 
