@@ -56,7 +56,6 @@ void setup() {
     sensor.reset();
 
     pressure_baseline = sensor.getPressure(ADC_4096);
-
 }
 
 

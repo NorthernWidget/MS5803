@@ -45,24 +45,9 @@ void MS5803::reset(void)
 }
 
 
-uint8_t MS5803::begin(uint8_t address, int MaxPressure)
+uint8_t MS5803::begin()
 // Initialize library for subsequent pressure measurements
 {
-    // Reset address and pressure if given in begin
-    _address = address; //set interface used for communication
-
-    switch(MaxPressure)
-    {
-        // Set model number based on maximum pressure range
-        case (1): {Model = 1; break;}    //BA01
-        case (2): {Model = 2; break;}    //BA02
-        case (5): {Model = 3; break;}    //BA05
-        case (7): {Model = 4; break;}    //BA07
-        case (14): {Model = 5; break;}   //BA14
-        case (30): {Model = 6; break;}   //BA30
-        default: {Model = 3; break;}    //BA05
-    }
-
     Wire.begin();  // Arduino Wire library initializer
 
     uint8_t i;
@@ -127,6 +112,28 @@ uint8_t MS5803::begin(uint8_t address, int MaxPressure)
     }
 
     return 0;
+}
+
+
+uint8_t MS5803::begin(uint8_t address, int MaxPressure)
+// Initialize library for subsequent pressure measurements
+{
+    // Reset address and pressure if given in begin
+    _address = address; //set interface used for communication
+
+    switch(MaxPressure)
+    {
+        // Set model number based on maximum pressure range
+        case (1): {Model = 1; break;}    //BA01
+        case (2): {Model = 2; break;}    //BA02
+        case (5): {Model = 3; break;}    //BA05
+        case (7): {Model = 4; break;}    //BA07
+        case (14): {Model = 5; break;}   //BA14
+        case (30): {Model = 6; break;}   //BA30
+        default: {Model = 3; break;}    //BA05
+    }
+
+    begin();
 }
 
 
