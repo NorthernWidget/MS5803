@@ -50,7 +50,7 @@ void setup() {
     // available addresses (selected by jumper on board)
     //  ADDRESS_HIGH = 0x76
     //  ADDRESS_LOW  = 0x77
-    sensor.begin(0x76, 5);
+    sensor.begin(0x76, 14);
 
     //Retrieve calibration constants for conversion math.
     sensor.reset();
