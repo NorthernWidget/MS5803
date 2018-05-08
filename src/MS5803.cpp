@@ -111,7 +111,8 @@ uint8_t MS5803::begin()
         break;
     }
 
-    return 0;
+    Wire.beginTransmission((int)_address);
+    return Wire.endTransmission(); //Return sucess or failue of I2C connection
 }
 
 

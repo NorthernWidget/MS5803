@@ -59,11 +59,13 @@ enum precision
 
 #define CMD_PROM 0xA0 // Coefficient location
 
+#define ADDRESS_LOW 0x77
+#define ADDRESS_HIGH 0x76
 
 class MS5803
 {
 public:
-    MS5803(uint8_t address = 0x76, int MaxPressure = 14);  // Constructor
+    MS5803(uint8_t address = 0x77, int MaxPressure = 2);  // Constructor
     void reset(void);     //Reset device
     uint8_t begin(uint8_t address, int MaxPressure); // Collect coefficients from sensor
     uint8_t begin(); // Collect coefficients from sensor
