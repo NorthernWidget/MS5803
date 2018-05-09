@@ -61,10 +61,10 @@ uint8_t MS5803::begin()
         lowByte = Wire.read();
         coefficient[i] = (highByte << 8)|lowByte;
     // Uncomment below for debugging output.
-    //    Serial.print("C");
-    //    Serial.print(i);
-    //    Serial.print("= ");
-    //    Serial.println(coefficient[i]);
+       // Serial.print("C");
+       // Serial.print(i);
+       // Serial.print("= ");
+       // Serial.println(coefficient[i]);
     }
 
     switch(Model){
@@ -176,7 +176,6 @@ void MS5803::getMeasurements(precision _precision)
     //Retrieve ADC result
     int32_t temperature_raw = getADCconversion(TEMPERATURE, _precision);
     int32_t pressure_raw = getADCconversion(PRESSURE, _precision);
-
 
     //Create Variables for calculations
     int32_t temp_calc;
