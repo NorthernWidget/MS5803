@@ -75,6 +75,10 @@ public:
     // Return calculated pressure from sensor
     float getPressure(precision _precision);
 
+    // get the temperature and pressure 
+    void getMeasurements(precision _precision, temperature_units units, float &temperature, float &pressure);
+
+    
 private:
     int Model;
     int32_t _temperature_actual;
@@ -84,7 +88,6 @@ private:
     uint16_t coefficient[8];// Coefficients;
     uint16_t ConvCoef[16]; //Coefficients for data conversion
 
-    void getMeasurements(precision _precision);
 
     void sendCommand(uint8_t command);    // General I2C send command function
     uint32_t getADCconversion(measurement _measurement, precision _precision);    // Retrieve ADC result

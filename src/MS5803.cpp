@@ -141,36 +141,22 @@ uint8_t MS5803::begin(uint8_t address, int MaxPressure)
 float MS5803::getTemperature(temperature_units units, precision _precision)
 // Return a temperature reading in either F or C.
 {
-    getMeasurements(_precision);
-    float temperature_reported;
-    // If Fahrenheit is selected return the temperature converted to F
-    if(units == FAHRENHEIT){
-        temperature_reported = _temperature_actual / 100.0f;
-        temperature_reported = (((temperature_reported) * 9) / 5) + 32;
-        return temperature_reported;
-        }
-
-    // If Celsius is selected return the temperature converted to C
-    else {
-        temperature_reported = _temperature_actual / 100.0f;
-        return temperature_reported;
-    }
+    float temperature_reported, pressure_reported;
+    getMeasurements(_precision, units, temperature_reported, pressure_reported);
+    return temperature_reported;   
 }
 
 
 float MS5803::getPressure(precision _precision)
 // Return a pressure reading units Pa.
 {
-    getMeasurements(_precision);
-    float pressure_reported;
-    pressure_reported = _pressure_actual;
-    // pressure_reported = pressure_reported / 10;
-    pressure_reported = pressure_reported / (float(ConvCoef[4])/100.0); //05BA model!
+    float temperature_reported, pressure_reported;
+    getMeasurements(_precision, CELSIUS, temperature_reported, pressure_reported);
     return pressure_reported;
 }
 
 
-void MS5803::getMeasurements(precision _precision)
+void MS5803::getMeasurements(precision _precision, temperature_units units, float &temperature_reported, float &pressure_reported)
 // Gets resuts from ADC and stores them into internal variables
 {
     //Retrieve ADC result
@@ -236,6 +222,15 @@ void MS5803::getMeasurements(precision _precision)
 
     _temperature_actual = temp_calc ;
     _pressure_actual = pressure_calc ; // 10;// pressure_calc;
+    // default: Celsius
+    temperature_reported = _temperature_actual / 100.0f;
+    // If Fahrenheit is selected return the temperature converted to F
+    if(units == FAHRENHEIT){
+        temperature_reported = (((temperature_reported) * 9) / 5) + 32;
+    }   
+    pressure_reported = _pressure_actual;
+    pressure_reported = pressure_reported / (float(ConvCoef[4])/100.0); //05BA model!
+    
 }
 
 
